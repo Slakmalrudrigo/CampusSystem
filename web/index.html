@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Student & Campus DSA System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo">🎓</div>
+                <div class="brand-text">
+                    <h2>UniCampus</h2>
+                    <span>DSA Suite 2.0</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-item active" data-tab="tab-students">
+                    <span class="icon">👥</span> Student Directory
+                </button>
+                <button class="nav-item" data-tab="tab-bst">
+                    <span class="icon">🌳</span> BST Visualizer
+                </button>
+                <button class="nav-item" data-tab="tab-hashtable">
+                    <span class="icon">⚡</span> Hash Table Buckets
+                </button>
+                <button class="nav-item" data-tab="tab-queue">
+                    <span class="icon">🎫</span> Service Queue
+                </button>
+                <button class="nav-item" data-tab="tab-stack">
+                    <span class="icon">↺</span> Action Stack (Undo)
+                </button>
+                <button class="nav-item" data-tab="tab-campus">
+                    <span class="icon">🗺️</span> Campus Navigation
+                </button>
+                <button class="nav-item" data-tab="tab-benchmark">
+                    <span class="icon">⏱️</span> DSA Benchmark
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="btn-undo-global" class="btn btn-warning full-width">
+                    <span>↺</span> Undo Last Action
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="page-title">
+                    <h1 id="current-tab-title">Student Directory</h1>
+                    <p id="current-tab-subtitle">Manage student records with synchronized Data Structures</p>
+                </div>
+                <div class="header-actions">
+                    <span class="badge badge-success" id="server-status">● Server Online</span>
+                    <button class="btn btn-outline" id="btn-refresh">🔄 Refresh</button>
+                </div>
+            </header>
+
+            <!-- TAB 1: Student Directory -->
+            <section id="tab-students" class="tab-page active">
+                <div class="action-bar">
+                    <div class="search-box">
+                        <span>🔍</span>
+                        <input type="text" id="search-student-input" placeholder="Search by Student ID, Name or Programme...">
+                    </div>
+                    <button class="btn btn-primary" id="btn-open-add-modal">+ Add Student</button>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Total Students</div>
+                        <div class="stat-value" id="stat-total-students">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Average Marks</div>
+                        <div class="stat-value" id="stat-avg-marks">0.0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Top Performer</div>
+                        <div class="stat-value" id="stat-top-student">N/A</div>
+                    </div>
+                </div>
+
+                <div class="card table-card">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>Programme</th>
+                                <th>Marks</th>
+                                <th>Grade</th>
+                                <th>GPA</th>
+                                <th>Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="student-table-body">
+                            <!-- Rows loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- TAB 2: BST Visualizer -->
+            <section id="tab-bst" class="tab-page">
+                <div class="card-header-bar">
+                    <div>
+                        <h3>Binary Search Tree (Sorted by Student ID)</h3>
+                        <p class="text-muted">Tree height: <span id="bst-height">0</span> | Total Nodes: <span id="bst-nodes">0</span></p>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-outline" id="btn-bst-inorder">In-Order</button>
+                        <button class="btn btn-outline" id="btn-bst-preorder">Pre-Order</button>
+                        <button class="btn btn-outline" id="btn-bst-postorder">Post-Order</button>
+                    </div>
+                </div>
+
+                <div class="card canvas-card">
+                    <canvas id="bst-canvas" width="1000" height="500"></canvas>
+                </div>
+
+                <div class="card info-card">
+                    <h4>Traversal Output</h4>
+                    <div class="traversal-box" id="bst-traversal-output">
+                        Select a traversal mode above to view node ordering...
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: Hash Table Buckets -->
+            <section id="tab-hashtable" class="tab-page">
+                <div class="card-header-bar">
+                    <div>
+                        <h3>Student Hash Table (Size: 10 Buckets)</h3>
+                        <p class="text-muted">Direct $O(1)$ Hash Map Search with Separate Chaining Linked Lists</p>
+                    </div>
+                    <div class="badge badge-info" id="ht-collision-badge">Collisions: 0</div>
+                </div>
+
+                <div class="hashtable-grid" id="hashtable-buckets">
+                    <!-- Bucket cards loaded via JS -->
+                </div>
+            </section>
+
+            <!-- TAB 4: Service Request Queue -->
+            <section id="tab-queue" class="tab-page">
+                <div class="card-header-bar">
+                    <div>
+                        <h3>Student Service Tickets Queue (FIFO Order)</h3>
+                        <p class="text-muted">First-In First-Out Processing System</p>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" id="btn-open-request-modal">+ Submit Request</button>
+                        <button class="btn btn-success" id="btn-process-queue">✅ Process Next Ticket</button>
+                    </div>
+                </div>
+
+                <div class="queue-container" id="queue-cards-list">
+                    <!-- Queue cards loaded via JS -->
+                </div>
+            </section>
+
+            <!-- TAB 5: Action Stack -->
+            <section id="tab-stack" class="tab-page">
+                <div class="card-header-bar">
+                    <div>
+                        <h3>Action History Stack (LIFO Undo Engine)</h3>
+                        <p class="text-muted">Most recent user actions pushed to top of stack</p>
+                    </div>
+                    <button class="btn btn-warning" id="btn-undo-stack">↺ Pop & Undo Top Action</button>
+                </div>
+
+                <div class="stack-list" id="stack-history-list">
+                    <!-- Stack records loaded via JS -->
+                </div>
+            </section>
+
+            <!-- TAB 6: Campus Navigation -->
+            <section id="tab-campus" class="tab-page">
+                <div class="pathfinding-toolbar">
+                    <div class="form-inline">
+                        <label>From:</label>
+                        <select id="select-start-loc" class="form-control"></select>
+                    </div>
+                    <div class="form-inline">
+                        <label>To:</label>
+                        <select id="select-target-loc" class="form-control"></select>
+                    </div>
+                    <button class="btn btn-primary" id="btn-find-path">🎯 Find Shortest Path (Dijkstra)</button>
+                </div>
+
+                <div class="card canvas-card">
+                    <canvas id="campus-canvas" width="1000" height="500"></canvas>
+                </div>
+
+                <div class="card info-card" id="shortest-path-box">
+                    <h4>Navigation Route Result</h4>
+                    <p id="path-result-text">Select start and destination buildings above to calculate optimal route.</p>
+                </div>
+            </section>
+
+            <!-- TAB 7: Benchmark -->
+            <section id="tab-benchmark" class="tab-page">
+                <div class="card-header-bar">
+                    <div>
+                        <h3>Data Structures Search Performance Benchmark</h3>
+                        <p class="text-muted">Empirical execution time measurement over 100,000 search iterations</p>
+                    </div>
+                    <button class="btn btn-primary" id="btn-run-benchmark">⚡ Run Benchmark</button>
+                </div>
+
+                <div class="benchmark-grid">
+                    <div class="benchmark-card card-list">
+                        <div class="bm-header">Linked List</div>
+                        <div class="bm-complexity">Time: O(n)</div>
+                        <div class="bm-time" id="bm-list-time">0.0000 ms</div>
+                        <div class="bm-desc">Linear Sequential Search</div>
+                    </div>
+                    <div class="benchmark-card card-bst">
+                        <div class="bm-header">Binary Search Tree</div>
+                        <div class="bm-complexity">Time: O(log n)</div>
+                        <div class="bm-time" id="bm-bst-time">0.0000 ms</div>
+                        <div class="bm-desc">Logarithmic Tree Traversal</div>
+                    </div>
+                    <div class="benchmark-card card-ht">
+                        <div class="bm-header">Hash Table</div>
+                        <div class="bm-complexity">Time: O(1)</div>
+                        <div class="bm-time" id="bm-ht-time">0.0000 ms</div>
+                        <div class="bm-desc">Direct Constant Index Lookup</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add/Edit Student Modal -->
+    <div class="modal" id="modal-student">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-student-title">Add Student Record</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="form-student">
+                <div class="form-group">
+                    <label>Student ID</label>
+                    <input type="text" id="input-student-id" required placeholder="e.g. STU109">
+                </div>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="input-name" required placeholder="e.g. John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Programme</label>
+                    <input type="text" id="input-programme" required placeholder="e.g. Computer Science">
+                </div>
+                <div class="form-group">
+                    <label>Marks (0 - 100)</label>
+                    <input type="number" step="0.5" id="input-marks" min="0" max="100" required placeholder="e.g. 85.5">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline close-modal-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Service Ticket Modal -->
+    <div class="modal" id="modal-request">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Submit Service Ticket</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="form-request">
+                <div class="form-group">
+                    <label>Student ID</label>
+                    <select id="input-req-student-id" class="form-control" required></select>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="input-req-category" class="form-control" required>
+                        <option value="Academic">Academic (Transcripts, Grades)</option>
+                        <option value="Financial">Financial (Tuition, Scholarships)</option>
+                        <option value="IT Support">IT Support (Portal, Wi-Fi)</option>
+                        <option value="Hostel">Hostel & Housing</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Request Description</label>
+                    <textarea id="input-req-desc" required placeholder="Describe your request..."></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline close-modal-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Submit Ticket</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
