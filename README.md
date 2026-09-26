@@ -9,13 +9,13 @@
 
 ## Team Responsibilities
 
-| Role            | Responsibility | Key Contributions |
-|:----------------| :--- | :--- |
-| **23DA2_0416**  | Linked List & Student Records Management | Designed `Student` class, implemented `StudentLinkedList` CRUD operations, input validation, and student data model. |
-| **23DA2_0106**  | Stack & Queue Operations | Implemented `ActionStack` with Undo history engine and `ServiceRequestQueue` FIFO ticket processing system. |
-| **23DA2_0310**  | BST Tree & Hashing Search | Developed `StudentBST` (insert, delete with 0/1/2 children handling, traversals) and `StudentHashTable` ($O(1)$ lookup & bucket chaining). |
-| **23DA2_0100**  | Campus Graph & Navigation | Built `CampusGraph` with weighted connections, adjacency list representation, BFS, DFS, and Dijkstra's Shortest Path algorithm. |
-| **All Members** | System Integration & Testing | Integration in `DataManager`, automated unit testing suite (`TestRunner`), CLI menu, and Web Visualizer Dashboard. |
+| Student ID | GitHub Username | Full Name | Responsibility | Key Contributions |
+|:---|:---|:---|:---|:---|
+| **23DA2_0416** | `slakmalrudrigo` | **K.S. Lakmal Rudrigo** | Linked List & Student Records Management | Designed `Student` class, implemented `StudentLinkedList` CRUD operations, input validation, and student data model. |
+| **23DA2_0100** | `thasrif06` | **M.I. Mohamed Thasrif** | Stack & Queue Operations | Implemented `ActionStack` with Undo history engine and `ServiceRequestQueue` FIFO ticket processing system. |
+| **23DA2_0106** | `fazamaserofwolf17` | **M.H. Fathima Mafaza** | BST Tree & Hashing Search | Developed `StudentBST` (insert, delete with 0/1/2 children handling, traversals) and `StudentHashTable` (O(1) lookup & bucket chaining). |
+| **23DA2_0310** | `Naufagit96` | **Naufa Begum** | Campus Graph & Navigation | Built `CampusGraph` with weighted connections, adjacency list representation, BFS, DFS, and Dijkstra's Shortest Path algorithm. |
+| **All Members** | — | **All Team Members** | System Integration & Testing | Integration in `DataManager`, automated unit testing suite (`TestRunner`), CLI menu, and Web Visualizer Dashboard. |
 
 ---
 
@@ -85,6 +85,6 @@ java -cp out universitysystem.TestRunner
 java -cp out universitysystem.Main
 ```
 
-### 4. Launch Interactive Web Dashboard (Optional)
+### 4. Launch Interactive Web Dashboard (Extra)
 Run the application and select **Option 16** from the menu, or open your web browser at:
 `http://localhost:8080`
