@@ -136,14 +136,14 @@ public class DataManager {
     // Pre-seed sample campus map, students, and requests
     public void loadSampleData() {
         // Pre-seed Students
-        addStudent(new Student("ST101", "Suresh Lakmal", "Computer Science", 88.5));
-        addStudent(new Student("ST102", "Sameera Sampath", "Software Engineering", 74.0));
-        addStudent(new Student("ST103", "Dhanushka Mahesh", "Data Science", 92.0));
-        addStudent(new Student("ST104", "Amila Nuwan", "Cyber Security", 65.5));
-        addStudent(new Student("ST105", "Kasun Rajith", "Artificial Intelligence", 81.0));
-        addStudent(new Student("ST106", "Sunil Santha", "Information Tech", 58.0));
-        addStudent(new Student("ST107", "Bhagya Sanjeewani", "Computer Science", 49.5));
-        addStudent(new Student("ST108", "Mithila Deshani", "Software Engineering", 95.0));
+        addStudent(new Student("STU101", "Suresh Lakmal", "Computer Science", 88.5));
+        addStudent(new Student("STU102", "Sameera Sampath", "Software Engineering", 74.0));
+        addStudent(new Student("STU103", "Dhanushka Mahesh", "Data Science", 92.0));
+        addStudent(new Student("STU104", "Amila Nuwan", "Cyber Security", 65.5));
+        addStudent(new Student("STU105", "Kasun Rajith", "Artificial Intelligence", 81.0));
+        addStudent(new Student("STU106", "Sunil Santha", "Information Tech", 58.0));
+        addStudent(new Student("STU107", "Bhagya Sanjeewani", "Computer Science", 49.5));
+        addStudent(new Student("STU108", "Mithila Deshani", "Software Engineering", 95.0));
 
         // Pre-seed Campus Locations & Distances
         campusGraph.addLocation("Main Gate");
@@ -167,10 +167,10 @@ public class DataManager {
         campusGraph.addConnection("Sports Arena", "Hostel Village", 150);
 
         // Pre-seed Service Requests
-        serviceQueue.enqueue("ST101", "Academic", "Request official transcript for graduate application.");
-        serviceQueue.enqueue("ST103", "Financial", "Inquiry regarding scholarship disbursement status.");
-        serviceQueue.enqueue("ST104", "IT Support", "Reset Wi-Fi portal password.");
-        serviceQueue.enqueue("ST105", "Hostel", "Room maintenance request - air conditioning check.");
+        serviceQueue.enqueue("STU101", "Academic", "Request official transcript for graduate application.");
+        serviceQueue.enqueue("STU103", "Financial", "Inquiry regarding scholarship disbursement status.");
+        serviceQueue.enqueue("STU104", "IT Support", "Reset Wi-Fi portal password.");
+        serviceQueue.enqueue("STU105", "Hostel", "Room maintenance request - air conditioning check.");
     }
 
     // Benchmark search across data structures
