@@ -14,7 +14,6 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("==================================================================");
-        System.out.println("  CIT300 Data Structures and Algorithms - Assignment 1           ");
         System.out.println("  UNIVERSITY STUDENT RECORD & CAMPUS ROUTE MANAGEMENT SYSTEM     ");
         System.out.println("==================================================================");
 
@@ -24,7 +23,7 @@ public class Main {
 
             displayMenu();
 
-            int choice = readInt("Enter your choice (1-17): ");
+            int choice = readInt("Enter your choice : ");
 
             switch (choice) {
 
@@ -124,7 +123,7 @@ public class Main {
         System.out.println("13. Remove Campus Connection/Road");
         System.out.println("14. Display Campus Connections");
         System.out.println("15. Traverse Campus Locations using BFS or DFS (and Shortest Path)");
-        System.out.println("16. Launch Interactive Web Visualizer Dashboard");
+        System.out.println("16. Launch Interactive Web Visualizer Dashboard (Additional)");
         System.out.println("17. Exit");
         System.out.println("===================================================");
     }
@@ -135,7 +134,7 @@ public class Main {
         String studentId = readText("Enter Student ID: ");
 
         if (dataManager.getStudentList().searchStudent(studentId) != null) {
-            System.out.println("❌ Error: Duplicate Student ID. Record already exists.");
+            System.out.println(" Error: Duplicate Student ID. Record already exists.");
             return;
         }
 
@@ -145,9 +144,9 @@ public class Main {
 
         Student student = new Student(studentId, name, programme, marks);
         if (dataManager.addStudent(student)) {
-            System.out.println("✅ Student added successfully to Linked List, BST, and Hash Table.");
+            System.out.println(" Student added successfully to Linked List, BST, and Hash Table.");
         } else {
-            System.out.println("❌ Failed to add student record.");
+            System.out.println(" Failed to add student record.");
         }
     }
 
@@ -157,7 +156,7 @@ public class Main {
         String studentId = readText("Enter Student ID to update: ");
 
         if (dataManager.getStudentList().searchStudent(studentId) == null) {
-            System.out.println("❌ Error: Student ID not found.");
+            System.out.println(" Error: Student ID not found.");
             return;
         }
 
@@ -166,9 +165,9 @@ public class Main {
         double marks = readMarks("Enter New Marks (0-100): ");
 
         if (dataManager.updateStudent(studentId, name, programme, marks)) {
-            System.out.println("✅ Student updated successfully across all data structures.");
+            System.out.println(" Student updated successfully across all data structures.");
         } else {
-            System.out.println("❌ Failed to update student record.");
+            System.out.println(" Failed to update student record.");
         }
     }
 
@@ -178,9 +177,9 @@ public class Main {
         String studentId = readText("Enter Student ID to delete: ");
 
         if (dataManager.deleteStudent(studentId)) {
-            System.out.println("✅ Student deleted successfully. Operation pushed to Action Stack (Undo available).");
+            System.out.println(" Student deleted successfully. Operation pushed to Action Stack (Undo available).");
         } else {
-            System.out.println("❌ Error: Student ID not found.");
+            System.out.println(" Error: Student ID not found.");
         }
     }
 
@@ -197,7 +196,7 @@ public class Main {
         String description = readText("Enter Request Description: ");
 
         ServiceRequestQueue.ServiceRequest request = dataManager.getServiceQueue().enqueue(studentId, category, description);
-        System.out.println("✅ Service request added to Queue: Ticket #" + request.getRequestId());
+        System.out.println(" Service request added to Queue: Ticket #" + request.getRequestId());
     }
 
     // 6. Process Next Service Request
@@ -206,10 +205,10 @@ public class Main {
         ServiceRequestQueue.ServiceRequest processed = dataManager.getServiceQueue().dequeue();
 
         if (processed != null) {
-            System.out.println("✅ Processed Service Request (FIFO):");
+            System.out.println(" Processed Service Request (FIFO):");
             System.out.println(processed);
         } else {
-            System.out.println("⚠️ Service request queue is empty.");
+            System.out.println("Service request queue is empty.");
         }
     }
 
@@ -221,7 +220,7 @@ public class Main {
             String choice = scanner.nextLine().trim();
             if (choice.equalsIgnoreCase("y")) {
                 if (dataManager.undoLastAction()) {
-                    System.out.println("✅ Last action undone successfully.");
+                    System.out.println(" Last action undone successfully.");
                 }
             }
         }
@@ -244,13 +243,13 @@ public class Main {
         long elapsedTime = System.nanoTime() - startTime;
 
         if (student != null) {
-            System.out.println("✅ Student Found via Hash Table O(1) Search:");
+            System.out.println(" Student Found via Hash Table O(1) Search:");
             System.out.println(student);
             System.out.println("⚡ Search Time: " + elapsedTime + " nanoseconds");
             int bucket = dataManager.getStudentHashTable().hashFunction(studentId);
-            System.out.println("📍 Hash Index / Bucket: " + bucket);
+            System.out.println(" Hash Index / Bucket: " + bucket);
         } else {
-            System.out.println("❌ Student not found in Hash Table.");
+            System.out.println(" Student not found in Hash Table.");
         }
     }
 
@@ -260,9 +259,9 @@ public class Main {
         String location = readText("Enter Location Name: ");
 
         if (dataManager.getCampusGraph().addLocation(location)) {
-            System.out.println("✅ Campus location '" + location + "' added to graph.");
+            System.out.println(" Campus location '" + location + "' added to graph.");
         } else {
-            System.out.println("❌ Location already exists or invalid.");
+            System.out.println(" Location already exists or invalid.");
         }
     }
 
@@ -272,9 +271,9 @@ public class Main {
         String location = readText("Enter Location Name to remove: ");
 
         if (dataManager.getCampusGraph().removeLocation(location)) {
-            System.out.println("✅ Location '" + location + "' and its connections removed.");
+            System.out.println(" Location '" + location + "' and its connections removed.");
         } else {
-            System.out.println("❌ Location not found in campus graph.");
+            System.out.println(" Location not found in campus graph.");
         }
     }
 
@@ -286,9 +285,9 @@ public class Main {
         int distance = readInt("Enter Distance in meters (e.g., 150): ");
 
         if (dataManager.getCampusGraph().addConnection(loc1, loc2, distance)) {
-            System.out.println("✅ Connection created between '" + loc1 + "' and '" + loc2 + "' (" + distance + "m).");
+            System.out.println(" Connection created between '" + loc1 + "' and '" + loc2 + "' (" + distance + "m).");
         } else {
-            System.out.println("❌ Failed to create connection. Check if locations exist and are not already connected.");
+            System.out.println(" Failed to create connection. Check if locations exist and are not already connected.");
         }
     }
 
@@ -299,9 +298,9 @@ public class Main {
         String loc2 = readText("Enter Second Location: ");
 
         if (dataManager.getCampusGraph().removeConnection(loc1, loc2)) {
-            System.out.println("✅ Connection removed between '" + loc1 + "' and '" + loc2 + "'.");
+            System.out.println(" Connection removed between '" + loc1 + "' and '" + loc2 + "'.");
         } else {
-            System.out.println("❌ Connection not found.");
+            System.out.println(" Connection not found.");
         }
     }
 
@@ -323,7 +322,7 @@ public class Main {
         if (choice == 1) {
             List<String> bfsOrder = dataManager.getCampusGraph().bfs(startLoc);
             if (bfsOrder.isEmpty()) {
-                System.out.println("❌ Location not found.");
+                System.out.println(" Location not found.");
             } else {
                 System.out.println("\n===== BFS Campus Traversal =====");
                 System.out.println(String.join(" -> ", bfsOrder));
@@ -331,7 +330,7 @@ public class Main {
         } else if (choice == 2) {
             List<String> dfsOrder = dataManager.getCampusGraph().dfs(startLoc);
             if (dfsOrder.isEmpty()) {
-                System.out.println("❌ Location not found.");
+                System.out.println(" Location not found.");
             } else {
                 System.out.println("\n===== DFS Campus Traversal =====");
                 System.out.println(String.join(" -> ", dfsOrder));
@@ -339,7 +338,7 @@ public class Main {
         } else if (choice == 3) {
             String targetLoc = readText("Enter Target Destination Location: ");
             CampusGraph.ShortestPathResult result = dataManager.getCampusGraph().findShortestPath(startLoc, targetLoc);
-            System.out.println("\n🎯 Dijkstra Shortest Path Result:");
+            System.out.println("\n Dijkstra Shortest Path Result:");
             System.out.println(result);
         }
     }
