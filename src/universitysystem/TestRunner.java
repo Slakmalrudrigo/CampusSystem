@@ -42,7 +42,7 @@ public class TestRunner {
 
     private static void testStudentModel() {
         System.out.println("\n--- Testing Student Model ---");
-        Student s = new Student("STU999", "Test User", "CS", 87.5);
+        Student s = new Student("ST999", "Test User", "CS", 87.5);
         assertCondition("Student Grade is A+", "A+".equals(s.getGrade()));
         assertCondition("Student GPA is 4.00", s.getGpa() == 4.00);
         assertCondition("Student Email contains name & id", s.getEmail().contains("testuser") && s.getEmail().contains("stu999"));
